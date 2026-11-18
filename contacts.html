@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты — ФотоАрт</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">Фото<span>Арт</span></a>
+    <nav class="nav" id="nav">
+      <a href="index.html">Главная</a>
+      <a href="services.html">Услуги</a>
+      <a href="portfolio.html">Портфолио</a>
+      <a href="price.html">Цены</a>
+      <a href="booking.html">Запись</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Контакты</h2>
+    <p class="section-sub">Мы всегда на связи. Позвоните, напишите или просто заходите — покажем залы и подберём время для съёмки.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">&#9742;</div>
+        <h3>Телефон</h3>
+        <p><a href="tel:+73512000000" style="color:var(--accent)">+7 (351) 200-00-00</a><br>ежедневно с 10:00 до 21:00</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#9993;</div>
+        <h3>E-mail</h3>
+        <p><a href="mailto:hello@fotoart.ru" style="color:var(--accent)">hello@fotoart.ru</a><br>ответим в течение дня</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#8986;</div>
+        <h3>Режим работы</h3>
+        <p>Пн–Вс: 10:00–21:00<br>без выходных</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px">
+      <div class="icon">&#9962;</div>
+      <h3>Адрес</h3>
+      <p>г. Челябинск, ул. Труда, 20<br>2 минуты от площади Революции</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <h2 class="section-title">Как нас найти</h2>
+    <p class="section-sub">Вход со стороны ул. Труда, 2-й этаж, звонок «ФотоАрт»</p>
+    <iframe src="https://yandex.ru/map-widget/v1/?ll=61.400153%2C55.160289&amp;z=16&amp;pt=61.400153,55.160289,pm2rdm"
+            width="100%" height="420" frameborder="0" allowfullscreen="true"
+            style="border-radius:12px; border:1px solid #23232b"></iframe>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="cta-band">
+      <h2>Остались вопросы?</h2>
+      <p style="color:var(--muted); margin:14px 0 26px">Оставьте номер — администратор перезвонит и всё расскажет.</p>
+      <form id="callbackForm" style="max-width:420px; margin:0 auto; text-align:left">
+        <div class="form-row">
+          <label for="cbName">Ваше имя *</label>
+          <input type="text" id="cbName" name="cbName" placeholder="Имя">
+          <div class="error" id="cbErrName">Укажите имя (минимум 2 символа)</div>
+        </div>
+        <div class="form-row">
+          <label for="cbPhone">Телефон *</label>
+          <input type="tel" id="cbPhone" name="cbPhone" placeholder="+7 (___) ___-__-__">
+          <div class="error" id="cbErrPhone">Введите корректный номер телефона</div>
+        </div>
+        <button type="submit" class="btn" style="width:100%">Перезвоните мне</button>
+        <div class="success" id="cbSuccess">Спасибо! Мы перезвоним вам в течение 30 минут.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="text-align:center; padding:34px 20px; color:var(--muted); font-size:14px">
+    <div class="logo" style="font-size:20px; margin-bottom:10px">Фото<span>Арт</span></div>
+    <p>&copy; 2026 Фотостудия «ФотоАрт». Все права защищены.</p>
+    <p>+7 (351) 200-00-00 &middot; hello@fotoart.ru</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Валидация формы обратного звонка (независима от script.js,
+  // чтобы не конфликтовать с формой записи на booking.html)
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('callbackForm');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var ok = true;
+
+      var name = document.getElementById('cbName');
+      var errName = document.getElementById('cbErrName');
+      if (name.value.trim().length < 2) { errName.classList.add('show'); ok = false; }
+      else errName.classList.remove('show');
+
+      var phone = document.getElementById('cbPhone');
+      var errPhone = document.getElementById('cbErrPhone');
+      var phoneRe = /^[\d\s()+-]{10,18}$/;
+      if (!phoneRe.test(phone.value.trim())) { errPhone.classList.add('show'); ok = false; }
+      else errPhone.classList.remove('show');
+
+      if (ok) {
+        document.getElementById('cbSuccess').classList.add('show');
+        form.reset();
+      } else {
+        document.getElementById('cbSuccess').classList.remove('show');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
