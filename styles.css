@@ -97,12 +97,31 @@ h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 600; }
 
 .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 .tile {
-  aspect-ratio: 4/3; border-radius: 10px; display: flex;
-  align-items: flex-end; padding: 18px; color: #fff; overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: 10px;
+  overflow: hidden;
   transition: transform .25s;
 }
 .tile:hover { transform: scale(1.02); }
-.tile .tag { background: rgba(0,0,0,.5); padding: 5px 14px; border-radius: 20px; font-size: 13px; }
+.tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s;
+}
+.tile:hover img { transform: scale(1.05); }
+.tile .tag {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  background: rgba(0,0,0,.5);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
 .g1 { background: linear-gradient(135deg,#3a2c14,#7a5a1e); }
 .g2 { background: linear-gradient(135deg,#20242e,#4a5060); }
 .g3 { background: linear-gradient(135deg,#33203a,#6b3f78); }
